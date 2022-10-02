@@ -1,0 +1,2 @@
+docker build .
+docker run -p 3002:8001 id_Образа

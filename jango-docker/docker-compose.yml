@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  django:
+    build: .
+    container_name: django-container
+    command: python manage.py runserver 0.0.0.0:8005
+    volumes:
+     - .:/usr/src/app
+    ports:
+      - 8005:8005
+    depends_on:
+      - pgdb
+
+  pgdb:
+    image: postgres
+    container_name: pgdb-container
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - data:/var/lib/postgesql/data/
+
+volumes:
+ data: null
